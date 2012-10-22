@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   template="/WEB-INF/templates/default.xhtml">
+   <ui:define name="content">
+      <h1>Welcome to JBoss!</h1>
+
+      <div>
+         <p>You have successfully deployed a Java EE 6 web application.</p>
+         <h3>Your application can run on:</h3>
+         <img src="resources/gfx/dualbrand_as7eap.png"/>
+      </div>
+
+      <h:form id="reg">
+         <h2>Issue Registration</h2>
+         <p>Enforces annotation-based constraints defined on the model class.</p>
+         <h:panelGrid columns="3" columnClasses="titleCell">
+            <h:outputLabel for="name" value="Name:"/>
+            <h:inputText id="name" value="#{newIssue.issueID}" />
+            <h:message for="name" errorClass="invalid"/>
+
+            <h:outputLabel for="comments" value="Email:"/>
+            <h:inputText id="comments" value="#{newIssue.comments}"/>
+            <h:message for="comments" errorClass="invalid"/>
+
+          
+         </h:panelGrid>
+
+         <p>
+            <h:panelGrid columns="2">
+               <h:commandButton id="register" action="#{issueController.register}" value="Register" styleClass="register"/>
+               <h:messages styleClass="messages" errorClass="invalid" infoClass="valid" warnClass="warning"
+                           globalOnly="true"/>
+            </h:panelGrid>
+         </p>
+      </h:form>
+      <h2>Issues</h2>
+      <h:panelGroup rendered="#{empty issues}">
+         <em>No registered issues.</em>
+      </h:panelGroup>
+      <!--  <h:dataTable var="_issue" value="#{issues}" rendered="#{not empty issues}" styleClass="simpletablestyle">
+         <h:column>
+            <f:facet name="header">Id</f:facet>
+                #{_issue.id}
+            </h:column>
+         <h:column>
+            <f:facet name="header">Name</f:facet>
+                #{_issue.name}
+            </h:column>
+         <h:column>
+            <f:facet name="header">Email</f:facet>
+                #{_issue.email}
+            </h:column>
+         <h:column>
+            <f:facet name="header">Phone #</f:facet>
+                #{_issue.phoneNumber}
+            </h:column>
+         <h:column>
+            <f:facet name="header">REST URL</f:facet>
+            <a href="#{request.contextPath}/rest/issues/#{_issue.id}">/rest/issues/#{_issue.id}</a>
+         </h:column>
+         <f:facet name="footer">
+            REST URL for all issues: <a href="#{request.contextPath}/rest/issues">/rest/issues</a>
+         </f:facet>
+      </h:dataTable>
+      
+      -->
+   </ui:define>
+</ui:composition>
